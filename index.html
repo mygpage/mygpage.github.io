@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body onload="getToken()">
+<h1>HELLO</h1>
+<script>
+	function getToken () {
+		const event = {"id":0,"event":"GET:auth-token","data":{}};
+		WebViewJsInterface.postMessage(JSON.stringify(event))	
+	}
+	__webview_comms__ = {
+        reply: function(message) {
+            const outputElement = document.getElementById("output") || document.createElement("div");
+            outputElement.id = "output";
+            outputElement.innerText = "Here's your token: " + JSON.stringify(message);
+            document.body.appendChild(outputElement); 
+        }
+    };	
+</script>
+</body>
+</html>
